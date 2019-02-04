@@ -125,10 +125,18 @@ class KnowledgeBase(object):
         Returns:
             None
         """
-        printv("Retracting {!r}", 0, verbose, [fact_or_rule])
+
+        #printv("Retracting {!r}", 0, verbose, [fact_or_rule])
         ####################################################
         # Student code goes here
-        
+        #Check the data type before removing it from a list
+        if isinstance(fact_or_rule, Fact):
+            if (fact_or_rule in self.facts) and fact_or_rule.asserted:
+                self.facts.remove(fact_or_rule)
+                for fact in self.facts:
+                    
+
+    def remove_rule(self, )
 
 class InferenceEngine(object):
     def fc_infer(self, fact, rule, kb):
@@ -140,8 +148,50 @@ class InferenceEngine(object):
             kb (KnowledgeBase) - A KnowledgeBase
 
         Returns:
-            Nothing            
+            Nothing
         """
+        #create new binding by matching first left hand rule and fact
+        new_binding = match(fact.statement, rule.lhs[0])
+
+        if len(rule.lhs) > 1:
+            lhs_list = []
+            for i in range(1, len(rule.lhs)):
+                lhs_list.append(instantiate(rule.lhs[i], new_binding))
+
+            #make a rule by combining the new lhs and given rhs
+            new_rule = instantiate(rule.rhs, new_binding)
+            inferred_r = Rule([lhs_list, new_rule])
+
+            #add inferred_rule to given rule and fact supports attributes
+            rule.supports_rules.append(inferred_r)
+            fact.supports_rules.append(inferred_r)
+
+            #add tuple of fact and rule to inferred rule supported_by attribute
+            inferred_r.supported_by.append((fact, rule))
+
+            #inferred rule is NOT asserted
+            inferred_r.asserted = False
+
+            #add inferred rule to kb
+            kb.kb_add(inferred_r)
+        else:
+            #derive fact by matching first lhs with provided fact
+            new_fact = instantiate(rule.rhs, new_binding)
+            inferred_f = Fact(new_fact)
+
+            #given facts + rules support inferred fact
+            fact.supports_facts.append(inferred_f)
+            rule.supports_facts.append(inferred_f)
+
+            #add tuple to supported_by attribute of new fact
+            inferred_f.supported_by.append((fact,rule))
+
+            #inferred fact is NOT asserted
+            inferred_f.asserted = False
+
+            #add inferred fact to kb
+            kb.kb_add(inferred_f)
+
         printv('Attempting to infer from {!r} and {!r} => {!r}', 1, verbose,
             [fact.statement, rule.lhs, rule.rhs])
         ####################################################
