@@ -128,15 +128,28 @@ class KnowledgeBase(object):
 
         #printv("Retracting {!r}", 0, verbose, [fact_or_rule])
         ####################################################
-        # Student code goes here
-        #Check the data type before removing it from a list
-        if isinstance(fact_or_rule, Fact):
-            if (fact_or_rule in self.facts) and fact_or_rule.asserted:
-                self.facts.remove(fact_or_rule)
-                for fact in self.facts:
-                    
+        # Check the data type before removing it from a list
+        if isinstance(fact_or_rule, Fact) and (fact_or_rule in self.facts):
+            kb_fact = self._get_fact(fact_or_rule)
+            kb_fact.asserted = False
+            if not kb_fact.supported_by:
+                self.remove_helper(kb_fact)
+            #Remove the fr from the actual KnowledgeBase
+            if isinstance(kb_fact, Fact):
+                self.facts.remove(kb_fact)
+            else:
+                self.rules.remove(kb_fact)
 
-    def remove_rule(self, )
+    def remove_helper(self, fr):
+        #Check to see if fact or rule is asserted and not supported by anything
+        if (not fr.asserted) and (not fr.supported_by):
+            for dependencies in fr.supports_facts:
+                dependencies.supported_by.remove(fr)
+                self.remove_helper(dependencies)
+
+            for dependencies in fr.supports_rules:
+                dependencies.supported_by.remove(fr)
+                self.remove_helper(dependencies)
 
 class InferenceEngine(object):
     def fc_infer(self, fact, rule, kb):
@@ -150,49 +163,42 @@ class InferenceEngine(object):
         Returns:
             Nothing
         """
-        #create new binding by matching first left hand rule and fact
-        new_binding = match(fact.statement, rule.lhs[0])
-
-        if len(rule.lhs) > 1:
-            lhs_list = []
-            for i in range(1, len(rule.lhs)):
-                lhs_list.append(instantiate(rule.lhs[i], new_binding))
-
-            #make a rule by combining the new lhs and given rhs
-            new_rule = instantiate(rule.rhs, new_binding)
-            inferred_r = Rule([lhs_list, new_rule])
-
-            #add inferred_rule to given rule and fact supports attributes
-            rule.supports_rules.append(inferred_r)
-            fact.supports_rules.append(inferred_r)
-
-            #add tuple of fact and rule to inferred rule supported_by attribute
-            inferred_r.supported_by.append((fact, rule))
-
-            #inferred rule is NOT asserted
-            inferred_r.asserted = False
-
-            #add inferred rule to kb
-            kb.kb_add(inferred_r)
-        else:
-            #derive fact by matching first lhs with provided fact
-            new_fact = instantiate(rule.rhs, new_binding)
-            inferred_f = Fact(new_fact)
-
-            #given facts + rules support inferred fact
-            fact.supports_facts.append(inferred_f)
-            rule.supports_facts.append(inferred_f)
-
-            #add tuple to supported_by attribute of new fact
-            inferred_f.supported_by.append((fact,rule))
-
-            #inferred fact is NOT asserted
-            inferred_f.asserted = False
-
-            #add inferred fact to kb
-            kb.kb_add(inferred_f)
-
         printv('Attempting to infer from {!r} and {!r} => {!r}', 1, verbose,
             [fact.statement, rule.lhs, rule.rhs])
         ####################################################
-        # Student code goes here
+        #create new binding by matching first left hand rule and fact
+        new_binding = match(fact.statement, rule.lhs[0])
+
+        if new_binding:
+             if len(rule.lhs) > 1:
+                 lhs_list = []
+                 for statement in rule.lhs[1:]:
+                     lhs_list.append(instantiate(statement, new_binding))
+
+                 #make a rule by combining the new lhs and given rhs
+                 new_rule = instantiate(rule.rhs, new_binding)
+                 inferred_r = Rule([lhs_list, new_rule])
+
+                 #rule and fact have inferred rule as dependent
+                 rule.supports_rules.append(inferred_r)
+                 fact.supports_rules.append(inferred_r)
+
+                 #inferred rule is supported by provided rule and fact
+                 inferred_r.supported_by.append([[fact, rule]])
+
+                 #add inferred rule to KnowledgeBase
+                 kb.kb_add(inferred_r)
+             else:
+                 #derive fact by matching first lhs with provided fact
+                 new_fact = instantiate(rule.rhs, new_binding)
+                 inferred_f = Fact(new_fact)
+
+                 #rule and fact have inferred fact as dependent
+                 fact.supports_facts.append(inferred_f)
+                 rule.supports_facts.append(inferred_f)
+
+                 ##inferred fact is supported by provided rule and fact
+                 inferred_f.supported_by.append([[fact,rule]])
+
+                 #add inferred fact to kb
+                 kb.kb_add(inferred_f)
