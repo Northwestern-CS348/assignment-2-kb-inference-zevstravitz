@@ -71,6 +71,8 @@ class KBTest(unittest.TestCase):
         answer = self.KB.kb_ask(ask1)
         self.assertEqual(str(answer[0]), "?X : bing")
 
+
+
     def test6(self):
         """this student generated test ensures retract only removes facts and rules that are supported by
         1 or less fact-rule pairs
@@ -159,6 +161,8 @@ class KBTest(unittest.TestCase):
         print(' Asking if', ask3)
         answer = self.KB.kb_ask(ask3)
         self.assertEqual(str(answer[0]), "?X : profHammond")
+        
+
 
 
 def pprint_justification(answer):
@@ -173,7 +177,7 @@ def pprint_justification(answer):
             # print justifications
             for fact_rule in answer.list_of_bindings[i][1]:
                 pprint_support(fact_rule,0)
-        print
+
 
 def pprint_support(fact_rule, indent):
     """Recursive pretty printer helper to nicely indent

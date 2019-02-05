@@ -118,38 +118,59 @@ class KnowledgeBase(object):
 
     def kb_retract(self, fact_or_rule):
         """Retract a fact from the KB
-
         Args:
             fact (Fact) - Fact to be retracted
-
         Returns:
             None
         """
-
-        #printv("Retracting {!r}", 0, verbose, [fact_or_rule])
+        printv("Retracting {!r}", 0, verbose, [fact_or_rule])
         ####################################################
-        # Check the data type before removing it from a list
-        if isinstance(fact_or_rule, Fact) and (fact_or_rule in self.facts):
-            kb_fact = self._get_fact(fact_or_rule)
-            kb_fact.asserted = False
-            if not kb_fact.supported_by:
-                self.remove_helper(kb_fact)
-            #Remove the fr from the actual KnowledgeBase
-            if isinstance(kb_fact, Fact):
-                self.facts.remove(kb_fact)
-            else:
-                self.rules.remove(kb_fact)
+        # Student code goes here
 
-    def remove_helper(self, fr):
-        #Check to see if fact or rule is asserted and not supported by anything
-        if (not fr.asserted) and (not fr.supported_by):
-            for dependencies in fr.supports_facts:
-                dependencies.supported_by.remove(fr)
-                self.remove_helper(dependencies)
+        if isinstance(fact_or_rule, Fact):
+            for fact in self.facts:
+                if fact.statement == fact_or_rule.statement:
+                    self.kb_remove(fact)
 
-            for dependencies in fr.supports_rules:
-                dependencies.supported_by.remove(fr)
-                self.remove_helper(dependencies)
+    def kb_remove(self, fr):
+        if isinstance(fr, Rule):
+            if len(fr.supported_by) == 0:
+                for rule in fr.supports_rules:
+                    for pair in rule.supported_by:
+                        if pair[1] == fr:
+                            rule.supported_by.remove(pair)
+                    if len(rule.supported_by) == 0:
+                        self.kb_remove(rule)
+
+                for fact in fr.supports_facts:
+                    for pair in fact.supported_by:
+                        if pair[1] == fr:
+                            fact.supported_by.remove(pair)
+                    if len(fact.supported_by) == 0:
+                        self.kb_remove(fact)
+                self.rules.remove(fr)
+            fr.asserted = False
+
+        elif isinstance(fr, Fact):
+            if len(fr.supported_by) == 0:
+                for rule in fr.supports_rules:
+                    for pair in rule.supported_by:
+                        if pair[0] == fr:
+                            rule.supported_by.remove(pair)
+                    if len(rule.supported_by) == 0:
+                        self.kb_remove(rule)
+
+                for fact in fr.supports_facts:
+                    for pair in fact.supported_by:
+                        if pair[0] == fr:
+                            fact.supported_by.remove(pair)
+                    if len(fact.supported_by) == 0:
+                        self.kb_remove(fact)
+                self.facts.remove(fr)
+            fr.asserted = False
+
+        else:
+            print("Illegal data type in kb_remove")
 
 class InferenceEngine(object):
     def fc_infer(self, fact, rule, kb):
@@ -171,23 +192,25 @@ class InferenceEngine(object):
 
         if new_binding:
              if len(rule.lhs) > 1:
+
                  lhs_list = []
                  for statement in rule.lhs[1:]:
                      lhs_list.append(instantiate(statement, new_binding))
 
                  #make a rule by combining the new lhs and given rhs
-                 new_rule = instantiate(rule.rhs, new_binding)
-                 inferred_r = Rule([lhs_list, new_rule])
+                 new_rhs = instantiate(rule.rhs, new_binding)
+                 inferred_r = Rule([lhs_list, new_rhs])
 
                  #rule and fact have inferred rule as dependent
                  rule.supports_rules.append(inferred_r)
                  fact.supports_rules.append(inferred_r)
 
                  #inferred rule is supported by provided rule and fact
-                 inferred_r.supported_by.append([[fact, rule]])
+                 inferred_r.supported_by.append([fact, rule])
 
                  #add inferred rule to KnowledgeBase
                  kb.kb_add(inferred_r)
+
              else:
                  #derive fact by matching first lhs with provided fact
                  new_fact = instantiate(rule.rhs, new_binding)
