@@ -192,7 +192,7 @@ class InferenceEngine(object):
 
         if new_binding:
              if len(rule.lhs) > 1:
-
+                 #start with empty lhs
                  lhs_list = []
                  for statement in rule.lhs[1:]:
                      lhs_list.append(instantiate(statement, new_binding))
