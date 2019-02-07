@@ -1,0 +1,72 @@
+TESTS WITH ERRORS 
+test13 (gradingtests.UnitTests)
+Traceback (most recent call last):
+  File "/Users/k2i/academics/automatedgradingapp/app/testing/kb-inference/gradingtests.py", line 370, in test13
+    KB.kb_retract(fact1)
+  File "/Users/k2i/academics/automatedgradingapp/app/testing/kb-inference/student_code.py", line 133, in kb_retract
+    self.kb_remove(fact)
+  File "/Users/k2i/academics/automatedgradingapp/app/testing/kb-inference/student_code.py", line 161, in kb_remove
+    self.kb_remove(rule)
+  File "/Users/k2i/academics/automatedgradingapp/app/testing/kb-inference/student_code.py", line 147, in kb_remove
+    if pair[1] == fr:
+IndexError: list index out of range
+
+test14 (gradingtests.UnitTests)
+Traceback (most recent call last):
+  File "/Users/k2i/academics/automatedgradingapp/app/testing/kb-inference/gradingtests.py", line 399, in test14
+    KB.kb_retract(fact1)
+  File "/Users/k2i/academics/automatedgradingapp/app/testing/kb-inference/student_code.py", line 133, in kb_retract
+    self.kb_remove(fact)
+  File "/Users/k2i/academics/automatedgradingapp/app/testing/kb-inference/student_code.py", line 161, in kb_remove
+    self.kb_remove(rule)
+  File "/Users/k2i/academics/automatedgradingapp/app/testing/kb-inference/student_code.py", line 147, in kb_remove
+    if pair[1] == fr:
+IndexError: list index out of range
+
+test4 (gradingtests.UnitTests)
+Traceback (most recent call last):
+  File "/Users/k2i/academics/automatedgradingapp/app/testing/kb-inference/gradingtests.py", line 83, in test4
+    KB.kb_retract(fact1)
+  File "/Users/k2i/academics/automatedgradingapp/app/testing/kb-inference/student_code.py", line 133, in kb_retract
+    self.kb_remove(fact)
+  File "/Users/k2i/academics/automatedgradingapp/app/testing/kb-inference/student_code.py", line 161, in kb_remove
+    self.kb_remove(rule)
+  File "/Users/k2i/academics/automatedgradingapp/app/testing/kb-inference/student_code.py", line 147, in kb_remove
+    if pair[1] == fr:
+IndexError: list index out of range
+
+test5 (gradingtests.UnitTests)
+Traceback (most recent call last):
+  File "/Users/k2i/academics/automatedgradingapp/app/testing/kb-inference/gradingtests.py", line 121, in test5
+    KB.kb_retract(fact1)
+  File "/Users/k2i/academics/automatedgradingapp/app/testing/kb-inference/student_code.py", line 133, in kb_retract
+    self.kb_remove(fact)
+  File "/Users/k2i/academics/automatedgradingapp/app/testing/kb-inference/student_code.py", line 161, in kb_remove
+    self.kb_remove(rule)
+  File "/Users/k2i/academics/automatedgradingapp/app/testing/kb-inference/student_code.py", line 147, in kb_remove
+    if pair[1] == fr:
+IndexError: list index out of range
+
+test9 (gradingtests.UnitTests)
+Traceback (most recent call last):
+  File "/Users/k2i/academics/automatedgradingapp/app/testing/kb-inference/gradingtests.py", line 258, in test9
+    KB.kb_retract(fact1)
+  File "/Users/k2i/academics/automatedgradingapp/app/testing/kb-inference/student_code.py", line 133, in kb_retract
+    self.kb_remove(fact)
+  File "/Users/k2i/academics/automatedgradingapp/app/testing/kb-inference/student_code.py", line 161, in kb_remove
+    self.kb_remove(rule)
+  File "/Users/k2i/academics/automatedgradingapp/app/testing/kb-inference/student_code.py", line 147, in kb_remove
+    if pair[1] == fr:
+IndexError: list index out of range
+
+-------------------------------
+TESTS FAILED  
+test11 (gradingtests.UnitTests)
+Traceback (most recent call last):
+  File "/Users/k2i/academics/automatedgradingapp/app/testing/kb-inference/gradingtests.py", line 322, in test11
+    self.assertFalse(answer1)
+AssertionError: ListOfBindings([(Bindings({}, []), [Fact('fact', Statement('immortal', [Term(Constant('A'))]), True, [[[Fact('fact', Statement('immortalityGoesTo', [Term(Constant('A'))]), False, [], [Fact('fact', Statement('immortal', [Term(Constant('A'))]), True, [...], [], [])], []), Rule('rule', [Statement('immortalityGoesTo', [Term(Constant('A'))])], Statement('immortal', [Term(Constant('A'))]), True, [[Fact('fact', Statement('wealthyPerson', [Term(Constant('A'))]), True, [[[Fact('fact', Statement('wealthGoesTo', [Term(Constant('A'))]), True, [], [Fact('fact', Statement('wealthyPerson', [Term(Constant('A'))]), True, [...], [], [Rule('rule', [Statement('immortalityGoesTo', [Term(Constant('A'))])], Statement('immortal', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('immortal', [Term(Constant('A'))]), True, [...], [], [])], [])])], []), Rule('rule', [Statement('wealthGoesTo', [Term(Constant('A'))])], Statement('wealthyPerson', [Term(Constant('A'))]), True, [[Fact('fact', Statement('wisePerson', [Term(Constant('A'))]), True, [[[Fact('fact', Statement('wisdomGoesTo', [Term(Constant('A'))]), True, [], [Fact('fact', Statement('wisePerson', [Term(Constant('A'))]), True, [...], [], [Rule('rule', [Statement('wealthGoesTo', [Term(Constant('A'))])], Statement('wealthyPerson', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('wealthyPerson', [Term(Constant('A'))]), True, [...], [], [Rule('rule', [Statement('immortalityGoesTo', [Term(Constant('A'))])], Statement('immortal', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('immortal', [Term(Constant('A'))]), True, [...], [], [])], [])])], [])])], []), Rule('rule', [Statement('wisdomGoesTo', [Term(Constant('A'))])], Statement('wisePerson', [Term(Constant('A'))]), True, [[Fact('fact', Statement('heathyPerson', [Term(Constant('A'))]), True, [[[Fact('fact', Statement('healthGoesTo', [Term(Constant('A'))]), True, [], [Fact('fact', Statement('heathyPerson', [Term(Constant('A'))]), True, [...], [], [Rule('rule', [Statement('wisdomGoesTo', [Term(Constant('A'))])], Statement('wisePerson', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('wisePerson', [Term(Constant('A'))]), True, [...], [], [Rule('rule', [Statement('wealthGoesTo', [Term(Constant('A'))])], Statement('wealthyPerson', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('wealthyPerson', [Term(Constant('A'))]), True, [...], [], [Rule('rule', [Statement('immortalityGoesTo', [Term(Constant('A'))])], Statement('immortal', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('immortal', [Term(Constant('A'))]), True, [...], [], [])], [])])], [])])], [])])], []), Rule('rule', [Statement('healthGoesTo', [Term(Constant('A'))])], Statement('heathyPerson', [Term(Constant('A'))]), True, [[Fact('fact', Statement('person', [Term(Constant('A'))]), True, [], [], [Rule('rule', [Statement('healthGoesTo', [Term(Constant('A'))])], Statement('heathyPerson', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('heathyPerson', [Term(Constant('A'))]), True, [...], [], [Rule('rule', [Statement('wisdomGoesTo', [Term(Constant('A'))])], Statement('wisePerson', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('wisePerson', [Term(Constant('A'))]), True, [...], [], [Rule('rule', [Statement('wealthGoesTo', [Term(Constant('A'))])], Statement('wealthyPerson', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('wealthyPerson', [Term(Constant('A'))]), True, [...], [], [Rule('rule', [Statement('immortalityGoesTo', [Term(Constant('A'))])], Statement('immortal', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('immortal', [Term(Constant('A'))]), True, [...], [], [])], [])])], [])])], [])])], [])]), Rule('rule', [Statement('person', [Term(Variable('?x'))]), Statement('healthGoesTo', [Term(Variable('?x'))])], Statement('heathyPerson', [Term(Variable('?x'))]), True, [], [], [Rule('rule', [Statement('healthGoesTo', [Term(Constant('A'))])], Statement('heathyPerson', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('heathyPerson', [Term(Constant('A'))]), True, [...], [], [Rule('rule', [Statement('wisdomGoesTo', [Term(Constant('A'))])], Statement('wisePerson', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('wisePerson', [Term(Constant('A'))]), True, [...], [], [Rule('rule', [Statement('wealthGoesTo', [Term(Constant('A'))])], Statement('wealthyPerson', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('wealthyPerson', [Term(Constant('A'))]), True, [...], [], [Rule('rule', [Statement('immortalityGoesTo', [Term(Constant('A'))])], Statement('immortal', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('immortal', [Term(Constant('A'))]), True, [...], [], [])], [])])], [])])], [])])], [])])]], [Fact('fact', Statement('heathyPerson', [Term(Constant('A'))]), True, [...], [], [Rule('rule', [Statement('wisdomGoesTo', [Term(Constant('A'))])], Statement('wisePerson', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('wisePerson', [Term(Constant('A'))]), True, [...], [], [Rule('rule', [Statement('wealthGoesTo', [Term(Constant('A'))])], Statement('wealthyPerson', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('wealthyPerson', [Term(Constant('A'))]), True, [...], [], [Rule('rule', [Statement('immortalityGoesTo', [Term(Constant('A'))])], Statement('immortal', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('immortal', [Term(Constant('A'))]), True, [...], [], [])], [])])], [])])], [])])], [])]]], [], [Rule('rule', [Statement('wisdomGoesTo', [Term(Constant('A'))])], Statement('wisePerson', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('wisePerson', [Term(Constant('A'))]), True, [...], [], [Rule('rule', [Statement('wealthGoesTo', [Term(Constant('A'))])], Statement('wealthyPerson', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('wealthyPerson', [Term(Constant('A'))]), True, [...], [], [Rule('rule', [Statement('immortalityGoesTo', [Term(Constant('A'))])], Statement('immortal', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('immortal', [Term(Constant('A'))]), True, [...], [], [])], [])])], [])])], [])]), Rule('rule', [Statement('heathyPerson', [Term(Variable('?x'))]), Statement('wisdomGoesTo', [Term(Variable('?x'))])], Statement('wisePerson', [Term(Variable('?x'))]), True, [], [], [Rule('rule', [Statement('wisdomGoesTo', [Term(Constant('A'))])], Statement('wisePerson', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('wisePerson', [Term(Constant('A'))]), True, [...], [], [Rule('rule', [Statement('wealthGoesTo', [Term(Constant('A'))])], Statement('wealthyPerson', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('wealthyPerson', [Term(Constant('A'))]), True, [...], [], [Rule('rule', [Statement('immortalityGoesTo', [Term(Constant('A'))])], Statement('immortal', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('immortal', [Term(Constant('A'))]), True, [...], [], [])], [])])], [])])], [])])]], [Fact('fact', Statement('wisePerson', [Term(Constant('A'))]), True, [...], [], [Rule('rule', [Statement('wealthGoesTo', [Term(Constant('A'))])], Statement('wealthyPerson', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('wealthyPerson', [Term(Constant('A'))]), True, [...], [], [Rule('rule', [Statement('immortalityGoesTo', [Term(Constant('A'))])], Statement('immortal', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('immortal', [Term(Constant('A'))]), True, [...], [], [])], [])])], [])])], [])]]], [], [Rule('rule', [Statement('wealthGoesTo', [Term(Constant('A'))])], Statement('wealthyPerson', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('wealthyPerson', [Term(Constant('A'))]), True, [...], [], [Rule('rule', [Statement('immortalityGoesTo', [Term(Constant('A'))])], Statement('immortal', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('immortal', [Term(Constant('A'))]), True, [...], [], [])], [])])], [])]), Rule('rule', [Statement('wisePerson', [Term(Variable('?x'))]), Statement('wealthGoesTo', [Term(Variable('?x'))])], Statement('wealthyPerson', [Term(Variable('?x'))]), True, [], [], [Rule('rule', [Statement('wealthGoesTo', [Term(Constant('A'))])], Statement('wealthyPerson', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('wealthyPerson', [Term(Constant('A'))]), True, [...], [], [Rule('rule', [Statement('immortalityGoesTo', [Term(Constant('A'))])], Statement('immortal', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('immortal', [Term(Constant('A'))]), True, [...], [], [])], [])])], [])])]], [Fact('fact', Statement('wealthyPerson', [Term(Constant('A'))]), True, [...], [], [Rule('rule', [Statement('immortalityGoesTo', [Term(Constant('A'))])], Statement('immortal', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('immortal', [Term(Constant('A'))]), True, [...], [], [])], [])])], [])]]], [], [Rule('rule', [Statement('immortalityGoesTo', [Term(Constant('A'))])], Statement('immortal', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('immortal', [Term(Constant('A'))]), True, [...], [], [])], [])]), Rule('rule', [Statement('wealthyPerson', [Term(Variable('?x'))]), Statement('immortalityGoesTo', [Term(Variable('?x'))])], Statement('immortal', [Term(Variable('?x'))]), True, [], [], [Rule('rule', [Statement('immortalityGoesTo', [Term(Constant('A'))])], Statement('immortal', [Term(Constant('A'))]), True, [...], [Fact('fact', Statement('immortal', [Term(Constant('A'))]), True, [...], [], [])], [])])]], [Fact('fact', Statement('immortal', [Term(Constant('A'))]), True, [...], [], [])], [])]]], [], [])])]) is not false
+
+-------------------------------
+TESTS SKIPPED 
+-------------------------------
